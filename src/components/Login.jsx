@@ -4,11 +4,11 @@ import { useContext, useState } from "react";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { DroneContext } from "../context/DroneContext";
 
-function Login() {
+function Login({ isLoggedIn, setIsLoggedIn }) {
   const { userData } = useContext(DroneContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [loginAttempts, setLoginAttempts] = useState(3);
   const [showPassword, setShowPassword] = useState(false);
 

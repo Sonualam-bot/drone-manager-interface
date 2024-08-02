@@ -1,40 +1,21 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 //assets
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import { DroneContext } from "../context/DroneContext";
 
-function Login({ isLoggedIn, setIsLoggedIn }) {
-  const { userData } = useContext(DroneContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [loginAttempts, setLoginAttempts] = useState(3);
-  const [showPassword, setShowPassword] = useState(false);
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (!userData) return;
-
-    const user = userData.users.find(
-      (u) => u.username === username && u.password === password
-    );
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setLoginAttempts((prevAttempts) => prevAttempts - 1);
-      if (loginAttempts <= 1) {
-        alert("Login failed. Too many attempts.");
-      }
-    }
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUsername("");
-    setPassword("");
-    setLoginAttempts(3);
-  };
+function Login({ isLoggedIn }) {
+  const {
+    userData,
+    username,
+    setUsername,
+    password,
+    setPassword,
+    showPassword,
+    setShowPassword,
+    handleLogin,
+    handleLogout,
+  } = useContext(DroneContext);
 
   if (!userData) {
     return <div>Loading...</div>;

@@ -95,14 +95,14 @@ function DroneFleetOverview() {
                   >
                     <Link
                       to={`/drone/${drone.id}`}
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 sm:py-2 sm:px-4 rounded text-xs sm:text-sm  hidden sm:block w-fit m-auto "
+                      className="bg-white text-[#4534AC] hover:bg-[#4534AC] hover:text-white  font-bold py-1 px-2 sm:py-2 sm:px-4 rounded text-xs sm:text-sm  hidden sm:block w-fit m-auto shadow-lg "
                     >
                       View Details
                     </Link>
 
                     <Link
                       to={`/drone/${drone.id}`}
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 sm:py-2 sm:px-4 rounded text-xs sm:text-sm  block sm:hidden w-fit m-auto "
+                      className="bg-white text-[#4534AC] hover:bg-[#4534AC] hover:text-white font-bold py-1 px-2 sm:py-2 sm:px-4 rounded text-xs sm:text-sm  block sm:hidden w-fit m-auto shadow-lg "
                     >
                       Details
                     </Link>

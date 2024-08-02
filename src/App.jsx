@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
 import DroneDetails from "./components/DroneDetails";
 import DroneFleetOverview from "./components/DroneFleetOveriew";
+import { DroneContext } from "./context/DroneContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useContext(DroneContext);
 
   return (
     <main>

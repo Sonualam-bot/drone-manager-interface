@@ -6,52 +6,60 @@ function DroneFleetOverview() {
   const { userData } = useContext(DroneContext);
 
   if (!userData || !userData.drones) {
-    return <div>Loading...</div>;
+    return (
+      <div className="text-center text-2xl text-gray-600 mt-10">Loading...</div>
+    );
   }
 
   return (
     <main
-      className="min-h-screen p-6 sm:p-10"
+      className="min-h-screen p-4 sm:p-6 md:p-10"
       style={{
         background: "linear-gradient(to right, #85a4c8 0%, #c8d2de 100%)",
       }}
     >
       <div
-        className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden"
+        className="max-w-full sm:max-w-6xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden"
         style={{
           background: "linear-gradient(180deg, #F7F7F7 0%, #F0F0F0 100%)",
         }}
       >
-        <h1 className="text-3xl sm:text-4xl font-barlow font-semibold text-center my-10 text-[#4534AC]">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-barlow font-semibold text-center my-6 sm:my-10 text-[#4534AC]">
           Drone Fleet Overview
         </h1>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse border border-slate-500">
             <thead>
-              <tr className="bg-[#b9b0eb] text-[#000000]  ">
-                <th className="py-3 px-4  border border-slate-600 text-center">
+              <tr className="bg-[#b9b0eb] text-[#000000]">
+                <th className="py-3 px-4 border border-slate-600 text-center text-sm sm:text-base">
                   Drone ID
                 </th>
-                <th className="py-3 px-4  border border-slate-600 text-center">
+                <th className="py-3 px-4 border border-slate-600 text-center text-sm sm:text-base">
                   Status
                 </th>
-                <th className="py-3 px-4  border border-slate-600 text-center">
+                <th className="py-3 px-4 border border-slate-600 text-center text-sm sm:text-base">
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
-              {userData.drones.map((drone) => (
+              {userData.drones.map((drone, index) => (
                 <tr
                   key={drone.id}
                   className="border-b border-gray-200 hover:bg-gray-100 text-center"
                 >
-                  <td className="py-3 px-4 border border-slate-700 ">
+                  <td
+                    className={`py-3 px-4 border border-slate-700 text-sm sm:text-base ${
+                      index === userData.drones.length - 1
+                        ? "rounded-bl-2xl"
+                        : ""
+                    }`}
+                  >
                     {drone.id}
                   </td>
-                  <td className="py-3 px-4 border border-slate-700 ">
+                  <td className="py-3 px-4 border border-slate-700">
                     <span
-                      className=" rounded-full text-xs font-semibold"
+                      className="rounded-full text-xs sm:text-sm font-semibold"
                       style={{
                         backgroundColor:
                           drone.status === "Available"
@@ -69,22 +77,34 @@ function DroneFleetOverview() {
                             : drone.status === "Maintenance"
                             ? "#744210"
                             : "#2D3748",
-                        paddingTop: "7px",
-                        paddingBottom: "7px",
-                        paddingLeft: "9px",
-                        paddingRight: "9px",
-                        borderRadius: "6px",
+                        paddingTop: "4px",
+                        paddingBottom: "4px",
+                        paddingLeft: "8px",
+                        paddingRight: "8px",
                       }}
                     >
                       {drone.status}
                     </span>
                   </td>
-                  <td className="py-3 px-4 border border-slate-700">
+                  <td
+                    className={`py-3 px-4 border border-slate-700 ${
+                      index === userData.drones.length - 1
+                        ? "rounded-br-2xl"
+                        : ""
+                    }`}
+                  >
                     <Link
                       to={`/drone/${drone.id}`}
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 sm:py-2 sm:px-4 rounded text-xs sm:text-sm  hidden sm:block w-fit m-auto "
                     >
                       View Details
+                    </Link>
+
+                    <Link
+                      to={`/drone/${drone.id}`}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 sm:py-2 sm:px-4 rounded text-xs sm:text-sm  block sm:hidden w-fit m-auto "
+                    >
+                      Details
                     </Link>
                   </td>
                 </tr>

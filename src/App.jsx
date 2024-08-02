@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
+import DroneDetails from "./components/DroneDetails";
 import DroneFleetOverview from "./components/DroneFleetOveriew";
 
 function App() {
@@ -25,6 +26,16 @@ function App() {
           element={
             isLoggedIn ? (
               <DroneFleetOverview setIsLoggedIn={setIsLoggedIn} />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        <Route
+          path="/drone/:id"
+          element={
+            isLoggedIn ? (
+              <DroneDetails setIsLoggedIn={setIsLoggedIn} />
             ) : (
               <Navigate to="/" />
             )

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { DroneContext } from "../context/DroneContext";
 
 function DroneFleetOverview() {
@@ -34,13 +35,16 @@ function DroneFleetOverview() {
                 <th className="py-3 px-4  border border-slate-600 text-center">
                   Status
                 </th>
+                <th className="py-3 px-4  border border-slate-600 text-center">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody>
               {userData.drones.map((drone) => (
                 <tr
                   key={drone.id}
-                  className="border-b border-gray-200 hover:bg-gray-100 text-center cursor-pointer "
+                  className="border-b border-gray-200 hover:bg-gray-100 text-center"
                 >
                   <td className="py-3 px-4 border border-slate-700 ">
                     {drone.id}
@@ -74,6 +78,14 @@ function DroneFleetOverview() {
                     >
                       {drone.status}
                     </span>
+                  </td>
+                  <td className="py-3 px-4 border border-slate-700">
+                    <Link
+                      to={`/drone/${drone.id}`}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      View Details
+                    </Link>
                   </td>
                 </tr>
               ))}

@@ -59,7 +59,7 @@ function DroneDetails() {
             />
             <DetailCard
               title="Last Known Location"
-              value={drone.last_known_location}
+              value={`${drone.last_known_location[0]}, ${drone.last_known_location[1]}`}
             />
             <DetailCard
               title="Current Mission"

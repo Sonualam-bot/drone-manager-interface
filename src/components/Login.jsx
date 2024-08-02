@@ -15,6 +15,8 @@ function Login({ isLoggedIn }) {
     setShowPassword,
     handleLogin,
     handleLogout,
+    wrongPassword,
+    loginAsAdmin,
   } = useContext(DroneContext);
 
   if (!userData) {
@@ -86,6 +88,12 @@ function Login({ isLoggedIn }) {
             </div>
           </div>
 
+          {wrongPassword && (
+            <p className="text-red-500 text-sm">
+              Incorrect username or password
+            </p>
+          )}
+
           <div>
             <button
               type="submit"
@@ -101,6 +109,16 @@ function Login({ isLoggedIn }) {
               }}
             >
               Login
+            </button>
+          </div>
+
+          <div>
+            <button
+              type="button"
+              onClick={loginAsAdmin}
+              className="w-full rounded-lg border border-solid p-2 text-white bg-gray-500"
+            >
+              Login as Admin
             </button>
           </div>
         </div>

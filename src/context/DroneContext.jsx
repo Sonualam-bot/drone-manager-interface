@@ -9,7 +9,7 @@ export const DroneContextProvider = ({ children }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [loginAttempts, setLoginAttempts] = useState(3);
+  const [wrongPassword, setWrongPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
@@ -21,11 +21,9 @@ export const DroneContextProvider = ({ children }) => {
     );
     if (user) {
       setIsLoggedIn(true);
+      setWrongPassword(false);
     } else {
-      setLoginAttempts((prevAttempts) => prevAttempts - 1);
-      if (loginAttempts <= 1) {
-        alert("Login failed. Too many attempts.");
-      }
+      setWrongPassword(true);
     }
   };
 
@@ -33,7 +31,10 @@ export const DroneContextProvider = ({ children }) => {
     setIsLoggedIn(false);
     setUsername("");
     setPassword("");
-    setLoginAttempts(3);
+  };
+  const loginAsAdmin = () => {
+    setUsername("admin");
+    setPassword("password123");
   };
 
   useEffect(() => {
@@ -54,6 +55,8 @@ export const DroneContextProvider = ({ children }) => {
     setShowPassword,
     handleLogin,
     handleLogout,
+    wrongPassword,
+    loginAsAdmin,
   };
 
   return (
